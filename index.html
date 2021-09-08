@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#5d93c0" />
+    <link rel="icon" href="./assets/images/bird.png" />
+    <meta name="description" content="Flappy Bird clone webapp is simple 2d game built on canvas with Vanilla JavaScript">
+    <meta name="keywords" content="2D game,Canvas, Javascript, game development, GitHub">
+    <meta name="author" content="Kecav">
+    <link rel="stylesheet" href="style.css" />
+    <script src="./scripts/script.js" defer></script>
+    <script src="./scripts/dom.js" defer></script>
+    <title>Flappy Birds Clone</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="600" height="800"></canvas>
+    <div id="screens">
+        <div id="new-game-screen">
+            <p class="message">Press <kbd>SPACEBAR</kbd> to jump.</p>
+            <button id="start-btn">
+                START GAME
+            </button>
+        </div>
+        <div id="game-over-screen">
+            <h1>GAME OVER</h1>
+            <div class="scores">
+                <p class="current-score">
+                    SCORE : <span id="current-score-value">0</span>
+                </p>
+                <p class="highscore">
+                    HIGHSCORE : <span id="highscore-value">0</span>
+                </p>
+            </div>
+            <button id="retry-btn">RETRY</button>
+            <a href="https://github.com/kecav" class="github-link-button">GITHUB</a>
+        </div>
+        <div id="background" hidden>
+            <img src="./assets//images/background.png" id="backgroundImg" alt="background" />
+            <img src="./assets//images/bird.png" id="birdImg" alt="bird" />
+        </div>
+    </div>
+</body>
+
+</html>
