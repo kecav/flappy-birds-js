@@ -170,7 +170,7 @@ const checkCollision = () => {
 
 // score counter
 const scoreCounter = () => {
-    console.log(pipe.first.x + pipe.width, bird.x);
+    // console.log(pipe.first.x + pipe.width, bird.x);
     if (
         bird.x === pipe.first.x + pipe.width ||
         bird.x === pipe.second.x + pipe.width
