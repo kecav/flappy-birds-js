@@ -175,6 +175,7 @@ const scoreCounter = () => {
         bird.x === pipe.first.x + pipe.width ||
         bird.x === pipe.second.x + pipe.width
     ) {
+        point.play();
         score.current++;
     }
     if (score.current > highScore.value) {
@@ -226,10 +227,14 @@ const eventHandler = (e) => {
         return;
     }
     if ((isGameOver || isNewGame) && e.code === "Space") {
+        wing.currentTime = 0;
+        wing.play();
         init();
         return;
     }
     bird.gravity = 14;
+    wing.currentTime = 0;
+    wing.play();
     cancelAnimationFrame(jumpAnimation);
     jump();
 };
@@ -271,6 +276,7 @@ const renderGame = () => {
 
 // freezes the game
 const terminate = () => {
+    hit.play();
     console.log("Score : ", score.current);
     isGameOver = true;
     cancelAnimationFrame(gameAnimation);
