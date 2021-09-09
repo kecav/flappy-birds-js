@@ -29,7 +29,7 @@ let bird = {
     color: "#f00",
     x: board.width / 3,
     y: board.height / 2,
-    gravity: 15,
+    gravity: 14,
 };
 
 //pipes
@@ -111,7 +111,7 @@ const createPipe = (x, y, h) => {
 // Algorithm to jump
 const jump = () => {
     bird.y -= bird.gravity;
-    bird.gravity -= 1;
+    bird.gravity -= 0.8;
     jumpAnimation = requestAnimationFrame(jump);
 };
 
@@ -170,6 +170,7 @@ const checkCollision = () => {
 
 // score counter
 const scoreCounter = () => {
+    // console.log(pipe.first.x + pipe.width, bird.x);
     if (
         bird.x === pipe.first.x + pipe.width + 1 ||
         bird.x === pipe.second.x + pipe.width + 1
@@ -228,7 +229,7 @@ const eventHandler = (e) => {
         init();
         return;
     }
-    bird.gravity = 15;
+    bird.gravity = 14;
     cancelAnimationFrame(jumpAnimation);
     jump();
 };
@@ -242,7 +243,7 @@ const resetValues = () => {
     passedPipe = false;
     score.current = 0;
     background.x = 0;
-    bird.gravity = 15;
+    bird.gravity = 14;
 };
 
 // initialize game
