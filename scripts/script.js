@@ -35,7 +35,7 @@ let bird = {
 //pipes
 let pipe = {
     width: 100,
-    speed: 3,
+    speed: 2,
     color: "#73bf2e",
     gap: 200,
     x: board.width,
@@ -170,10 +170,10 @@ const checkCollision = () => {
 
 // score counter
 const scoreCounter = () => {
-    // console.log(pipe.first.x + pipe.width, bird.x);
+    console.log(pipe.first.x + pipe.width, bird.x);
     if (
-        bird.x === pipe.first.x + pipe.width + 1 ||
-        bird.x === pipe.second.x + pipe.width + 1
+        bird.x === pipe.first.x + pipe.width ||
+        bird.x === pipe.second.x + pipe.width
     ) {
         score.current++;
     }
