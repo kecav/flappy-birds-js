@@ -119,3 +119,28 @@ kbd {
     cursor: pointer;
     transition: background-color 0.5s ease-in-out;
 }
+
+
+/* mobile */
+
+@media screen and (max-width:800px) {
+    #canvas {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    #game-over-screen,
+    #new-game-screen {
+        padding: 1rem;
+        row-gap: 0.5rem;
+        width: 15rem;
+    }
+    #game-over-screen h1 {
+        font-size: 1.25rem;
+    }
+    .github-link-button {
+        all: revert;
+        color: #222;
+    }
+}

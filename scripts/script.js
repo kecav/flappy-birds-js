@@ -8,6 +8,25 @@ const customFont = new FontFace(
     "url(./assets/fonts/PressStart2P-Regular.ttf)"
 );
 
+
+// variables
+let counterInterval;
+let gameAnimation;
+let jumpAnimation;
+let isNewGame = true;
+let isGameOver = true;
+let passedPipe = false;
+let isMobile;
+
+
+// sets width for mobile
+if (window.innerWidth <= 900) {
+    isMobile = true;
+    console.log("Width managed");
+    canvas.setAttribute("width", `${window.innerWidth}`);
+    canvas.setAttribute("height", `${window.innerHeight}`);
+}
+
 // load fonts
 customFont.load().then((font) => {
     // Add font on the html page
@@ -24,8 +43,8 @@ let board = {
 
 //bird
 let bird = {
-    width: 50,
-    height: 40,
+    width: isMobile ? 45 : 50,
+    height: isMobile ? 35 : 40,
     color: "#f00",
     x: board.width / 3,
     y: board.height / 2,
@@ -34,7 +53,7 @@ let bird = {
 
 //pipes
 let pipe = {
-    width: 100,
+    width: isMobile ? 80 : 100,
     speed: 2,
     color: "#73bf2e",
     gap: 200,
@@ -64,14 +83,6 @@ const background = { width: bgImg.width, height: bgImg.height, x: 0 };
 // score
 let score = { current: 0, x: 40, y: 80 };
 let highScore = { value: score.current, x: board.width - 20, y: 80 };
-
-// variables
-let counterInterval;
-let gameAnimation;
-let jumpAnimation;
-let isNewGame = true;
-let isGameOver = true;
-let passedPipe = false;
 
 // generates gradient
 const createGradient = (x) => {
@@ -192,7 +203,7 @@ const renderCanvas = () => {
     ctx.drawImage(
         bgImg,
         background.x,
-        0,
+        bgImg.height - canvas.height,
         board.width,
         board.height,
         0,
@@ -222,16 +233,14 @@ const renderCanvas = () => {
 };
 
 // handles events
-const eventHandler = (e) => {
-    if (e.code != "Space") {
-        return;
-    }
-    if ((isGameOver || isNewGame) && e.code === "Space") {
-        wing.currentTime = 0;
-        wing.play();
-        init();
-        return;
-    }
+const eventHandler = () => {
+    // console.log(e);
+    // if ((isGameOver || isNewGame)) {
+    //     wing.currentTime = 0;
+    //     wing.play();
+    //     init();
+    //     return;
+    // }
     bird.gravity = 14;
     wing.currentTime = 0;
     wing.play();
