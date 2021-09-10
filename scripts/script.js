@@ -96,6 +96,7 @@ const createGradient = (x) => {
 };
 
 // generates pipes
+
 const createPipe = (x, y, h) => {
     ctx.fillStyle = createGradient(x);
     ctx.fillRect(x, y, pipe.width, h); // upper pipe
@@ -235,12 +236,12 @@ const renderCanvas = () => {
 // handles events
 const eventHandler = () => {
     // console.log(e);
-    // if ((isGameOver || isNewGame)) {
-    //     wing.currentTime = 0;
-    //     wing.play();
-    //     init();
-    //     return;
-    // }
+    if ((isGameOver || isNewGame)) {
+        wing.currentTime = 0;
+        wing.play();
+        init();
+        return;
+    }
     bird.gravity = 14;
     wing.currentTime = 0;
     wing.play();
