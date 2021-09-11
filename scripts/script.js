@@ -296,7 +296,7 @@ const terminate = () => {
 
 // Listening to jump buttons
 window.addEventListener("keydown", eventHandler);
-window.addEventListener("click", eventHandler);
+window.addEventListener("mousedown", eventHandler);
 
 // Initial Screen Paint
 renderCanvas();
