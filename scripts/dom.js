@@ -5,7 +5,12 @@ const highScoreDom = document.getElementById("highscore-value");
 const startBtn = document.getElementById("start-btn");
 const gameOverScreen = document.getElementById("game-over-screen");
 const newGameScreen = document.getElementById("new-game-screen");
+const message = document.getElementsByClassName("message")[0];
 
+// for mobiles
+if (isMobile) {
+    message.innerHTML = "👆 to Jump.";
+}
 // function to add everything to dom after finish
 const addToDom = () => {
     // displays game-over screen
@@ -13,7 +18,7 @@ const addToDom = () => {
     gameOverScreen.style.display = "flex";
     currScoreDom.innerText = score.current;
     highScoreDom.innerText = highScore.value;
-}
+};
 
 // event listeners for retry
 retryBtn.addEventListener("click", init);
