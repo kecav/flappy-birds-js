@@ -8,7 +8,6 @@ const customFont = new FontFace(
     "url(./assets/fonts/PressStart2P-Regular.ttf)"
 );
 
-
 // variables
 let counterInterval;
 let gameAnimation;
@@ -17,7 +16,6 @@ let isNewGame = true;
 let isGameOver = true;
 let passedPipe = false;
 let isMobile;
-
 
 // sets width for mobile
 if (window.innerWidth <= 900) {
@@ -82,7 +80,7 @@ const background = { width: bgImg.width, height: bgImg.height, x: 0 };
 
 // score
 let score = { current: 0, x: 40, y: 80 };
-let highScore = { value: score.current, x: board.width - 20, y: 80 };
+let highScore = { value: retrieveHighScore(), x: board.width - 20, y: 80 };
 
 // generates gradient
 const createGradient = (x) => {
@@ -183,6 +181,18 @@ const checkCollision = () => {
 // score counter
 const scoreCounter = () => {
     // console.log(pipe.first.x + pipe.width, bird.x);
+
+    if (isMobile) {
+        if (
+            (bird.x - (pipe.first.x + pipe.width) < 2.5 &&
+                bird.x - (pipe.first.x + pipe.width) > 0) ||
+            (bird.x - (pipe.second.x + pipe.width) < 2.5 &&
+                bird.x - (pipe.second.x + pipe.width) > 0)
+        ) {
+            point.play();
+            score.current++;
+        }
+    }
     if (
         bird.x === pipe.first.x + pipe.width ||
         bird.x === pipe.second.x + pipe.width
@@ -192,6 +202,7 @@ const scoreCounter = () => {
     }
     if (score.current > highScore.value) {
         highScore.value = score.current;
+        saveToStorage();
     }
 };
 
@@ -236,7 +247,7 @@ const renderCanvas = () => {
 // handles events
 const eventHandler = () => {
     // console.log(e);
-    if ((isGameOver || isNewGame)) {
+    if (isGameOver || isNewGame) {
         wing.currentTime = 0;
         wing.play();
         init();
