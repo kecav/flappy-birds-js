@@ -21,8 +21,10 @@ let isMobile;
 if (window.innerWidth <= 900) {
     isMobile = true;
     console.log("Width managed");
-    canvas.setAttribute("width", `${window.innerWidth}`);
-    canvas.setAttribute("height", `${window.innerHeight}`);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // canvas.setAttribute("width", `${window.innerWidth}`);
+    // canvas.setAttribute("height", `${window.innerHeight}`);
 }
 
 // load fonts
