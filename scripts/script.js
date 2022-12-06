@@ -50,8 +50,9 @@ let bird = {
     color: "#f00",
     x: board.width / 3,
     y: board.height / 2,
-    speed: 14,
-    gravity : 0.75,
+    speed: 14,      // variable because of gravity
+    iSpeed: 10,     // fixed speed to begin with
+    gravity : 0.6,
     isFalling : true,
 
 };
@@ -132,7 +133,7 @@ const createPipe = (x, y, h) => {
 
 // Algorithm to jump
 const jump = () => {
-    console.log(bird.speed);
+    // console.log(bird.speed);
     bird.y -= bird.speed;
     bird.speed = Number(bird.speed - bird.gravity).toFixed(2);
     bird.isFalling = bird.speed>0;
@@ -268,7 +269,7 @@ const renderCanvas = () => {
 // handles events
 const eventHandler = () => {
     if(isGameOver) return;
-    bird.speed = 14;
+    bird.speed = bird.iSpeed;
     wing.currentTime = 0;
     // if (isGameOver || isNewGame) {
     //     init();
@@ -288,7 +289,7 @@ const resetValues = () => {
     passedPipe = false;
     score.current = 0;
     background.x = 0;
-    bird.speed = 14;
+    bird.speed = bird.iSpeed;
 };
 
 // initialize game
