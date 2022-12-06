@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #5d93c0;
+    background: linear-gradient(182deg, #71c6d0, #4c88c6);
+}
+
+#canvas {
+    border-radius: 1rem;
+    box-shadow: 10px 10px 20px 0 #0000003d;
+}
+
+#background,
+#backgroundImg {
+    display: none;
+}
+
+#game-over-screen,
+#new-game-screen {
+    padding: 2rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    row-gap: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    box-shadow: 10px 10px 20px 0 #0000005c;
+    cursor: default;
+    display: none;
+}
+
+#new-game-screen {
+    display: flex;
+}
+
+#retry-btn,
+#start-btn {
+    background-color: rgb(95, 95, 255);
+    outline: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    width: max-content;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+    letter-spacing: 2px;
+}
+
+kbd {
+    font-family: monospace;
+    border-radius: 0.2rem;
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.25rem;
+    color: #fff;
+    background: #545454;
+    box-shadow: 0px 3px 0 0 #dedede;
+}
+
+#retry-btn:active {
+    transform: scale(0.98);
+}
+
+.scores {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#current-score-value,
+#highscore-value {
+    font-weight: 600;
+    color: red;
+}
+
+#screens {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    width: 100vw;
+    height: 100vh;
+}
+
+.github-link-button {
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: rgb(255, 187, 0);
+    outline: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 0.5rem;
+    width: max-content;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+
+
+/* mobile */
+
+@media screen and (max-width:800px) {
+    #canvas {
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    #game-over-screen,
+    #new-game-screen {
+        padding: 1rem;
+        row-gap: 0.5rem;
+        width: 15rem;
+    }
+    #game-over-screen h1 {
+        font-size: 1.25rem;
+    }
+    .github-link-button {
+        all: revert;
+        color: #222;
+    }
+}
