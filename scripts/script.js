@@ -221,8 +221,8 @@ const scoreCounter = () => {
             dbbp.count++;
         } else {
             // valid score point
-            point.play();
             score.current += dbbp.count===0 ? 0 : dbbp.count/dbbp.count;
+            if(score.current!=preScore) point.play();
             // pipe gap changes
             if(score.current%score.flag==0) pipe.gap = pipe.gap <= pipe.minGap ? pipe.minGap : pipe.gap - pipe.reducer;
             dbbp.count = 0;
