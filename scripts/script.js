@@ -54,13 +54,13 @@ let bird = {
     iSpeed: 10,     // fixed speed to begin with
     gravity : 0.6,
     isFalling : true,
-
 };
 
 //pipes
 let pipe = {
     width: isMobile ? 80 : 100,
     speed: 2,
+    iSpeed: 2,
     color: "#73bf2e",
     gap: 250,
     minGap : 200,
@@ -70,12 +70,19 @@ let pipe = {
     y: 0,
     first: {
         height: Math.floor((Math.random() * board.height) / 2),
-        x: board.width * 1.25,
+        x: isMobile ? board.width * 1.25 : board.width,
     },
     second: {
         height: Math.floor((Math.random() * board.height) / 2),
-        x: board.width * 2,
+        x: isMobile ? board.width * 2 : board.width*1.5,
     },
+};
+
+// counter distance bw bird and pipe
+const dbbp = {
+    first : pipe.first + pipe.width,
+    second : pipe.second + pipe.width,
+    count : 0, // to count the frames and then divide by itself
 };
 
 // ground
@@ -193,24 +200,32 @@ const checkCollision = () => {
     return false;
 };
 
+// adds score
+const addScore = () => {
+   
+}
+
 // score counter
 const scoreCounter = () => {
     // console.log(pipe.first.x + pipe.width, bird.x);
-    // console.log(pipe.gap, pipe.speed);
+    console.log(dbbp.count, score.current, pipe.speed);
+    const preScore = score.current;
     if (isMobile) {
+        
         if (
-            (bird.x - (pipe.first.x + pipe.width) < 2.5 &&
+            (bird.x - (pipe.first.x + pipe.width) <= 5 &&
                 bird.x - (pipe.first.x + pipe.width) > 0) ||
-            (bird.x - (pipe.second.x + pipe.width) < 2.5 &&
+            (bird.x - (pipe.second.x + pipe.width) <= 5 &&
                 bird.x - (pipe.second.x + pipe.width) > 0)
         ) {
+            dbbp.count++;
+        } else {
             // valid score point
             point.play();
-            score.current++;
+            score.current += dbbp.count===0 ? 0 : dbbp.count/dbbp.count;
             // pipe gap changes
             if(score.current%score.flag==0) pipe.gap = pipe.gap <= pipe.minGap ? pipe.minGap : pipe.gap - pipe.reducer;
-            // dynamic speed as to when increase game speed
-            if(score.current%score.multi==0) pipe.speed = Number((pipe.speed + pipe.multi).toFixed(2));
+            dbbp.count = 0;
         }
     }
     if (
@@ -224,6 +239,8 @@ const scoreCounter = () => {
         highScore.value = score.current;
         saveToStorage();
     }
+    // dynamic speed as to when increase game speed
+    if(score.current!=0 && score.current!=preScore && score.current%score.multi==0) pipe.speed = Number((pipe.speed + pipe.multi).toFixed(2));
 };
 
 // render canvas
@@ -290,6 +307,7 @@ const resetValues = () => {
     score.current = 0;
     background.x = 0;
     bird.speed = bird.iSpeed;
+    pipe.speed = pipe.iSpeed;
 };
 
 // initialize game

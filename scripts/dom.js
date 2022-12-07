@@ -9,7 +9,7 @@ const message = document.getElementsByClassName("message")[0];
 
 // for mobiles
 if (isMobile) {
-    message.innerHTML = "👆 to Jump.";
+    message.innerHTML = "👆 to Jump";
 }
 // function to add everything to dom after finish
 const addToDom = () => {
