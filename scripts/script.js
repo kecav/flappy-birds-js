@@ -24,7 +24,7 @@ if (window.innerWidth <= 900) {
     isMobile = true;
     // console.log("Width managed");
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight/1.1;
     // canvas.setAttribute("width", `${window.innerWidth}`);
     // canvas.setAttribute("height", `${window.innerHeight}`);
 }
