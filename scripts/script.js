@@ -54,16 +54,18 @@ let bird = {
     iSpeed: 10,     // fixed speed to begin with
     gravity : 0.6,
     isFalling : true,
+    offset: 1.1,
+    // mWidth: bird.width,
 };
 
 //pipes
 let pipe = {
     width: isMobile ? 80 : 100,
-    speed: 2,
-    iSpeed: 2,
+    speed: 2, // speed 
+    iSpeed: 2, // speed to begin with
     color: "#73bf2e",
-    gap: 250,
-    minGap : 200,
+    gap: 250, // pipe gap initially
+    minGap : 200, 
     multi : 0.2, // by how much the speed should increase
     reducer: 1, // defines by how much the gap should decrease on every score.flag
     x: board.width,
@@ -82,7 +84,7 @@ let pipe = {
 const dbbp = {
     first : pipe.first + pipe.width,
     second : pipe.second + pipe.width,
-    count : 0, // to count the frames and then divide by itself
+    count : 0, // to count the frames and then divide by itself to get one
 };
 
 // ground
@@ -200,11 +202,6 @@ const checkCollision = () => {
     return false;
 };
 
-// adds score
-const addScore = () => {
-   
-}
-
 // score counter
 const scoreCounter = () => {
     // console.log(pipe.first.x + pipe.width, bird.x);
@@ -280,7 +277,7 @@ const renderCanvas = () => {
     
     
     // flappy bird
-    ctx.drawImage(bird.isFalling ? birdImgU : birdImgD, bird.x, bird.y, bird .width, bird.height);
+    ctx.drawImage(bird.isFalling ? birdImgU : birdImgD, bird.x, bird.y, bird.width*bird.offset, bird.height*bird.offset);
 };
 
 // handles events
